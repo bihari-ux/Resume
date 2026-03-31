@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bihari Kumar Rawat | Full Stack Developer</title>
+  <meta name="google-site-verification" content="j6c7vrrB6lstCbnG9c78cB6mk8_VWYTkqu2n1idy5Gc" />
+  <meta name="description" content="Official portfolio of Bihari Kumar Rawat, Full Stack Developer from India. MERN Stack, SvelteKit, modern web technologies.">
+  <meta property="og:title" content="Bihari Kumar Rawat — Full Stack Developer">
+  <meta property="og:image" content="https://res.cloudinary.com/dboqsv5va/image/upload/v1774766822/Bihari_zu7rc2.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bihari Kumar Rawat",
+    "jobTitle": "Full Stack Developer",
+    "sameAs": [
+      "https://www.linkedin.com/in/bihari-kumar-rawat-8b8267273/",
+      "https://www.instagram.com/babu_brand_143"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0a0a0f;
+      --paper: #f4f1eb;
+      --accent: #e8533a;
+      --accent2: #3a7fe8;
+      --gold: #c9a84c;
+      --muted: #6b6b7a;
+      --card: #ffffff;
+      --border: rgba(10,10,15,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Cursor ── */
+    .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+    .cursor-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: absolute; transform: translate(-50%,-50%); transition: transform 0.1s; }
+    .cursor-ring { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--ink); position: absolute; transform: translate(-50%,-50%); transition: transform 0.18s cubic-bezier(.25,.46,.45,.94), width 0.2s, height 0.2s; }
+
+    /* ── Noise ── */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(244,241,235,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0; background: var(--accent); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { padding: 9px 22px; background: var(--ink); color: var(--paper); border-radius: 100px; font-size: 13px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 120px 48px 80px; gap: 60px;
+      position: relative;
+    }
+    .hero-bg-text {
+      position: absolute; bottom: -40px; left: -20px;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(80px, 14vw, 200px);
+      font-weight: 800; letter-spacing: -5px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(10,10,15,0.06);
+      pointer-events: none; user-select: none; white-space: nowrap; z-index: 0;
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,83,58,0.1); border: 1px solid rgba(232,83,58,0.25);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12px; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-title .line2 { color: var(--accent); display: block; }
+    .hero-title .line3 { color: var(--muted); font-weight: 400; font-size: 0.65em; display: block; margin-top: 4px; letter-spacing: -0.5px; }
+    .hero-desc { margin-top: 24px; max-width: 420px; font-size: 16px; line-height: 1.75; color: var(--muted); animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-actions { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+
+    .btn-primary { padding: 14px 30px; background: var(--ink); color: var(--paper); border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; border: none; cursor: none; transition: transform 0.2s, background 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { transform: translateY(-2px); background: var(--accent); }
+    .btn-outline { padding: 14px 30px; background: transparent; border: 1.5px solid var(--border); border-radius: 100px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; cursor: none; transition: transform 0.2s, border-color 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-outline:hover { transform: translateY(-2px); border-color: var(--ink); }
+
+    .hero-stats { margin-top: 48px; display: flex; gap: 36px; animation: fadeUp 0.7s 0.4s ease both; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; }
+    .stat-label { font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+
+    .hero-right { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; animation: fadeLeft 0.8s 0.2s ease both; }
+    .photo-frame { position: relative; width: 360px; height: 440px; }
+    .photo-frame::before { content: ''; position: absolute; inset: -12px; border-radius: 28px; background: linear-gradient(135deg, var(--accent) 0%, transparent 50%, var(--accent2) 100%); opacity: 0.15; z-index: -1; }
+    .photo-frame::after { content: ''; position: absolute; top: 16px; right: -16px; bottom: -16px; left: 16px; border-radius: 24px; border: 1.5px dashed rgba(232,83,58,0.3); z-index: -1; }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; box-shadow: 0 32px 80px rgba(10,10,15,0.15); }
+    .photo-tag { position: absolute; bottom: -20px; left: -24px; background: var(--card); border-radius: 16px; padding: 14px 20px; box-shadow: 0 8px 32px rgba(10,10,15,0.12); display: flex; align-items: center; gap: 12px; }
+    .photo-tag-icon { font-size: 22px; }
+    .photo-tag-text strong { display: block; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; }
+    .photo-tag-text span { font-size: 11px; color: var(--muted); }
+    .photo-tag2 { position: absolute; top: 20px; right: -28px; background: var(--ink); color: var(--paper); border-radius: 12px; padding: 10px 16px; font-size: 12px; font-weight: 600; box-shadow: 0 8px 24px rgba(10,10,15,0.2); }
+    .photo-tag2 span { color: var(--accent); }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+    @keyframes fadeLeft { from { opacity:0; transform:translateX(32px); } to { opacity:1; transform:none; } }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { background: var(--accent); overflow: hidden; padding: 14px 0; }
+    .marquee-track { display: flex; white-space: nowrap; animation: marquee 18s linear infinite; }
+    .marquee-item { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; color: var(--paper); padding: 0 32px; display: flex; align-items: center; gap: 10px; }
+    .marquee-item::after { content: '★'; opacity: 0.5; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION ── */
+    section { padding: 96px 48px; position: relative; }
+    .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .section-label::before { content: ''; width: 28px; height: 1.5px; background: var(--accent); }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 48px; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--ink); color: var(--paper); }
+    #skills .section-label { color: var(--accent); }
+    #skills .section-title { color: var(--paper); }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; }
+    .skill-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 32px 28px; transition: background 0.3s, transform 0.3s; cursor: none; }
+    .skill-card:hover { background: rgba(232,83,58,0.1); transform: translateY(-4px); }
+    .skill-icon { font-size: 32px; margin-bottom: 16px; }
+    .skill-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .skill-desc { font-size: 13px; line-height: 1.6; color: rgba(244,241,235,0.55); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .skill-tag { padding: 4px 10px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; background: rgba(255,255,255,0.08); color: rgba(244,241,235,0.7); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--paper); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: transform 0.35s, box-shadow 0.35s;
+      cursor: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px rgba(10,10,15,0.12);
+    }
+
+    /* ── PROJECT IMAGE — fixed, real, no icons ── */
+    .project-img-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-img-wrap img {
+      transform: scale(1.05);
+    }
+    /* overlay strip at bottom of image */
+    .project-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, rgba(255,255,255,0.7));
+      pointer-events: none;
+    }
+
+    .project-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+    .project-type { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .project-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .project-desc { font-size: 13px; line-height: 1.65; color: var(--muted); flex: 1; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .stack-tag { padding: 4px 10px; border-radius: 100px; font-size: 10px; font-weight: 600; background: rgba(10,10,15,0.06); color: var(--muted); }
+    .project-links { display: flex; gap: 12px; margin-top: 20px; }
+    .project-link { font-size: 12px; font-weight: 700; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s; }
+    .project-link:hover { color: var(--accent); }
+
+    /* ── ABOUT ── */
+    #about { background: #f9f7f2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .about-photo { border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; background: #e0ddd7; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo:first-child { margin-top: 32px; }
+    .about-body { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 20px; }
+    .about-body strong { color: var(--ink); font-weight: 600; }
+    .about-vals { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .about-val { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 12px; background: var(--card); border: 1px solid var(--border); }
+    .about-val-icon { font-size: 20px; }
+    .about-val-text { font-size: 13px; font-weight: 500; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); color: var(--paper); text-align: center; }
+    #contact .section-title { color: var(--paper); max-width: 600px; margin: 0 auto 16px; }
+    .contact-sub { color: rgba(244,241,235,0.5); font-size: 16px; margin-bottom: 48px; }
+    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .contact-link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 600; transition: transform 0.2s, opacity 0.2s; }
+    .contact-link:hover { transform: translateY(-3px); opacity: 0.85; }
+    .link-linkedin { background: #0a66c2; color: white; }
+    .link-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+    .link-email { background: rgba(255,255,255,0.1); color: var(--paper); border: 1px solid rgba(255,255,255,0.15); }
+    .contact-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.1); margin: 0 auto 32px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; color: rgba(244,241,235,0.35); font-size: 12px; }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-2 { transition-delay: 0.15s; }
+    .reveal-3 { transition-delay: 0.3s; }
+    .reveal-4 { transition-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; text-align: center; }
+      .hero-right { order: -1; }
+      .photo-frame { width: 260px; height: 320px; }
+      .photo-tag2 { display: none; }
+      .hero-stats { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      section { padding: 64px 24px; }
+      #about { grid-template-columns: 1fr; }
+      .about-photos { display: none; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor">
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">BKR<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me →</a>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg-text">DEV</div>
+    <div class="hero-left">
+      <div class="hero-badge">Available for work</div>
+      <h1 class="hero-title">
+        Bihari Kumar
+        <span class="line2">Rawat</span>
+        <span class="line3">Full Stack Developer, India</span>
+      </h1>
+      <p class="hero-desc">
+        I build <strong>scalable web applications</strong> using MERN Stack and SvelteKit — from pixel-perfect UIs to robust backend systems. Passionate about performance and clean code.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View My Work ↓</a>
+        <a href="#contact" class="btn-outline">Let's Talk →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Coding</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Lines of Code</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-frame">
+        <img src="https://res.cloudinary.com/dboqsv5va/image/upload/v1774766822/Bihari_zu7rc2.jpg" alt="Bihari Kumar Rawat">
+        <div class="photo-tag">
+          <div class="photo-tag-icon">⚡</div>
+          <div class="photo-tag-text">
+            <strong>Fast Delivery</strong>
+            <span>Clean & Scalable Code</span>
+          </div>
+        </div>
+        <div class="photo-tag2">🇮🇳 Based in <span>India</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">React</span>
+      <span class="marquee-item">Node.js</span>
+      <span class="marquee-item">SvelteKit</span>
+      <span class="marquee-item">MongoDB</span>
+      <span class="marquee-item">Express</span>
+      <span class="marquee-item">PostgreSQL</span>
+      <span class="marquee-item">TypeScript</span>
+      <span class="marquee-item">Tailwind CSS</span>
+      <span class="marquee-item">Docker</span>
+      <span class="marquee-item">REST APIs</span>
+      <span class="marquee-item">Git & GitHub</span>
+      <span class="marquee-item">Redis</span>
+      <span class="marquee-item">React</span>
+      <span class="marquee-item">Node.js</span>
+      <span class="marquee-item">SvelteKit</span>
+      <span class="marquee-item">MongoDB</span>
+      <span class="marquee-item">Express</span>
+      <span class="marquee-item">PostgreSQL</span>
+      <span class="marquee-item">TypeScript</span>
+      <span class="marquee-item">Tailwind CSS</span>
+      <span class="marquee-item">Docker</span>
+      <span class="marquee-item">REST APIs</span>
+      <span class="marquee-item">Git & GitHub</span>
+      <span class="marquee-item">Redis</span>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="section-label">What I Do</div>
+    <div class="section-title reveal">My Core Skills &<br>Tech Stack</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚛️</div>
+        <div class="skill-name">Frontend Dev</div>
+        <div class="skill-desc">Building fast, responsive UIs with React and SvelteKit. Focus on performance, accessibility, and great UX.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">SvelteKit</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Tailwind</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-2">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-name">Backend Dev</div>
+        <div class="skill-desc">Scalable REST APIs and server-side logic using Node.js and Express. Auth, queues, and microservices.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">JWT Auth</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-3">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">Database & Cloud</div>
+        <div class="skill-desc">Designing schemas and managing data with MongoDB, PostgreSQL, and Redis. Deployed on cloud infrastructure.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">Cloudinary</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-4">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-name">DevOps & Tools</div>
+        <div class="skill-desc">Version control, CI/CD pipelines, Docker containers, and modern development workflows.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects — real images, no icons -->
+  <section id="projects">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title reveal">Selected Projects</div>
+    <div class="projects-grid">
+
+      <!-- Project 1: ORBAT Tactical Map -->
+      <div class="project-card reveal">
+        <div class="project-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80"
+            alt="ORBAT Tactical Map"
+            loading="lazy"
+          >
+        </div>
+        <div class="project-body">
+          <div class="project-type">GeoSpatial / Military Tech</div>
+          <div class="project-title">ORBAT Tactical Map</div>
+          <div class="project-desc">Interactive CesiumJS-based military map with drag-drop unit placement, coverage fans, RLOS analysis, and real-time orientation control.</div>
+          <div class="project-stack">
+            <span class="stack-tag">SvelteKit</span>
+            <span class="stack-tag">CesiumJS</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">REST API</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">Live Demo →</a>
+            <a href="#" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: E-Commerce Store -->
+      <div class="project-card reveal reveal-2">
+        <div class="project-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+            alt="Full Stack E-Commerce Store"
+            loading="lazy"
+          >
+        </div>
+        <div class="project-body">
+          <div class="project-type">E-Commerce</div>
+          <div class="project-title">Full Stack Store</div>
+          <div class="project-desc">Complete MERN e-commerce platform with product management, cart, secure payments, order tracking, and admin dashboard.</div>
+          <div class="project-stack">
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">Node.js</span>
+            <span class="stack-tag">MongoDB</span>
+            <span class="stack-tag">Stripe</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">Live Demo →</a>
+            <a href="#" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Real-Time Dashboard -->
+      <div class="project-card reveal reveal-3">
+        <div class="project-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+            alt="Real-Time Analytics Dashboard"
+            loading="lazy"
+          >
+        </div>
+        <div class="project-body">
+          <div class="project-type">Dashboard / Analytics</div>
+          <div class="project-title">Real-Time Dashboard</div>
+          <div class="project-desc">Admin analytics dashboard with live data charts, user management, role-based access, and WebSocket-powered real-time updates.</div>
+          <div class="project-stack">
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">Express</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">WebSocket</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">Live Demo →</a>
+            <a href="#" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-photos">
+      <div class="about-photo">
+        <img src="https://res.cloudinary.com/dboqsv5va/image/upload/v1774766822/Bihari_zu7rc2.jpg" alt="Bihari Kumar Rawat">
+      </div>
+      <div class="about-photo">
+        <img src="https://res.cloudinary.com/dboqsv5va/image/upload/v1753291631/njckkonebre299llxjjb.jpg" alt="Work photo">
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <div class="section-title reveal">The Person<br>Behind the Code</div>
+      <p class="about-body reveal">
+        Hey! I'm <strong>Bihari Kumar Rawat</strong>, a Full Stack Developer from <strong>India</strong> who loves turning complex ideas into elegant, high-performance web applications.
+      </p>
+      <p class="about-body reveal">
+        I specialize in the <strong>MERN Stack</strong> and <strong>SvelteKit</strong>, building everything from geospatial military dashboards to e-commerce platforms. I care deeply about <strong>clean architecture, fast load times</strong>, and user experiences that feel effortless.
+      </p>
+      <div class="about-vals reveal">
+        <div class="about-val">
+          <div class="about-val-icon">🎯</div>
+          <div class="about-val-text">Problem-first thinking — I code solutions, not just features</div>
+        </div>
+        <div class="about-val">
+          <div class="about-val-icon">🚀</div>
+          <div class="about-val-text">Performance obsessed — fast apps are happy apps</div>
+        </div>
+        <div class="about-val">
+          <div class="about-val-icon">🤝</div>
+          <div class="about-val-text">Open to freelance projects and full-time roles</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-label" style="justify-content:center">Get In Touch</div>
+    <div class="section-title reveal">Let's Build Something<br>Amazing Together</div>
+    <p class="contact-sub reveal">Open to freelance work, full-time roles, and interesting collaborations.</p>
+    <div class="contact-links reveal">
+      <a href="https://www.linkedin.com/in/bihari-kumar-rawat-8b8267273/" target="_blank" class="contact-link link-linkedin">LinkedIn Profile</a>
+      <a href="https://www.instagram.com/babu_brand_143" target="_blank" class="contact-link link-instagram">Instagram</a>
+      <a href="mailto:bihari@example.com" class="contact-link link-email">Send Email</a>
+    </div>
+    <div class="contact-divider"></div>
+    <p style="color:rgba(244,241,235,0.3); font-size:13px;">Based in India · Available Worldwide · Responds within 24h</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2025 Bihari Kumar Rawat. All rights reserved.</span>
+    <span>Built with ❤️ using <a href="#">HTML, CSS & JS</a></span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
